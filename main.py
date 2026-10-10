@@ -136,7 +136,8 @@ async def update_task(task_id: str, task_update: TaskCreate):
 
 @app.delete("/tasks/{task_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_task(task_id: str):
-    # Добавить код метода
+    get_task_or_404(task_id)  # Проверить, существует ли задача
+    del tasks_db[task_id]
 
     return None
 
